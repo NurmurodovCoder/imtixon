@@ -28,7 +28,5 @@ class ShopSerializer(serializers.ModelSerializer):
     def get_opening(self, obj):
         current_time = datetime.now().time()
 
-        if obj.opening_time < current_time < obj.closing_time:
-            return True
-        else:
-            return False
+        return obj.opening_time < current_time < obj.closing_time
+
