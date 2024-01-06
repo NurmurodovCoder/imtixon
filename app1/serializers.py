@@ -1,5 +1,8 @@
 from rest_framework import serializers
 from .models import City, Street, Shop
+from datetime import datetime
+
+current_time = datetime.now().time()
 
 
 class CitySerializer(serializers.ModelSerializer):
@@ -15,7 +18,17 @@ class StreetSerializer(serializers.ModelSerializer):
 
 
 class ShopSerializer(serializers.ModelSerializer):
+    city = CitySerializer()
+    street = StreetSerializer()
+
     class Meta:
         model = Shop
         fields = '__all__'
 
+    def get_opening(self, obj):
+        current_time = datetime.now().time()
+
+        if obj.opening_time < current_time < obj.closing_time:
+            return True
+        else:
+            return False

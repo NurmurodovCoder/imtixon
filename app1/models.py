@@ -23,6 +23,7 @@ class Shop(models.Model):
     house = models.CharField(max_length=10)
     opening_time = models.TimeField()
     closing_time = models.TimeField()
+    opening = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
