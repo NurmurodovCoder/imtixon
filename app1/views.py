@@ -1,4 +1,3 @@
-# myapp/views.py
 from rest_framework import generics
 from .models import City, Street, Shop
 from .serializers import CitySerializer, StreetSerializer, ShopSerializer
